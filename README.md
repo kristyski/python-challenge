@@ -1,2 +1,6 @@
 # python-challenge
-python homework
+
+Kristy Anderson
+date
+Data Analytics
+Python Challenge
