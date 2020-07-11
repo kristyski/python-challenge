@@ -1,7 +1,7 @@
 ## PyPoll
-# ![Vote Counting](Images/Vote_counting.png)
-# * In this challenge, you are tasked with helping a small, rural town modernize its vote counting process.
-# * You will be give a set of poll data called [election_data.csv](PyPoll/Resources/election_data.csv). The dataset is composed of three columns: `Voter ID`, `County`, and `Candidate`. Your task is to create a Python script that analyzes the votes and calculates each of the following:
+
+#   The dataset is composed of three columns: `Voter ID`, `County`, and `Candidate`.
+#   Your task is to create a Python script that analyzes the votes and calculates each of the following:
 #   * The total number of votes cast
 #   * A complete list of candidates who received votes
 #   * The percentage of votes each candidate won
@@ -28,3 +28,54 @@
 # Modules
 import os
 import csv
+
+datapath = os.path.join('Resources', 'election_data.csv') # defines object
+
+# open file, store in variable called csvfile
+with open(datapath) as csvfile:
+    reader = csv.reader(csvfile)
+
+# read header row, this just alerts that a header row exists or is it next(csv_reader, None)
+    csv_header = next(reader)
+
+    votes = [] # create a list to hold all votes
+#     monthlabel = []
+#     values = []
+#     previous = 0
+#     month = 0
+
+    for row in reader:
+        votes.append()
+
+print(f"Total Votes: {len(votes)}")
+
+#         current = row[1]
+#         month += 1 # same as month = month + 1
+#         monthvalue = row[0]
+#         monthlabel.append(monthvalue)
+#         values.append(float(previous))
+        
+#         if previous != 0:
+#             difference = float(current) - float(previous)
+#             diff_list.append(difference)
+            
+#             # monthlabel.append(monthvalue)
+#             # values.append(float(previous))
+
+#             previous = current
+
+#         else:
+#             difference = 0
+#             diff_list.append(difference)
+              # monthlabel.append(monthvalue)
+              # values.append(float(previous))
+#             previous = current
+
+# average = round(sum(diff_list) // (len(diff_list)-1),3)
+# print (average)
+# #print (diff_list)
+# #print (monthlabel)
+# #print (values)
+# print(f"Total Value: $ {sum(values)}")
+# print(f"Net Total P/L: ${sum(diff_list)}")
+# print(f"Average Change: ${average}")
