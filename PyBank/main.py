@@ -1,21 +1,15 @@
-# The dataset is composed of two columns: `Date` and `Profit/Losses`
-
 # open/use csv open and read Modules
 import os
 import csv
 
 datapath = os.path.join('.', 'Resources', 'budget_data.csv') # defines object
+outputfile = os.path.join('.', 'analysis', 'output.txt') # output file
 
 # open file, store in variable called csvfile
 with open(datapath) as csvfile:
     reader = csv.reader(csvfile)
-   # next(csvfile)
-
-# read header row, this just alerts that a header row exists or is it next(csv_reader, None)
     csv_header = next(reader)
-
-# The net total amount of "Profit/Losses" over the entire period:
-
+    
     diff_list = [] # create a list to hold the differences between months
     monthlabel = [] # list to holds month labels
     values = [] # list to holds monthly totals
@@ -36,23 +30,34 @@ with open(datapath) as csvfile:
 
         else:
             difference = 0
-            diff_list.append(difference)
             monthlabel.append(monthvalue)
             previous = current
             values.append(float(previous))
 
-#print (diff_list) # this is just to check what's in the list, delete when done
 average = round(sum(diff_list) / len(diff_list),2)
 gincrease = max(diff_list)
 gdecrease = min(diff_list)
 
-# print(diff_list.index(gincrease))
-# print(monthlabel[25])
-# print(diff_list.index(gdecrease))
-# print(monthlabel[44])
-print(f"Total Months: {len(diff_list)}")
+
+results = ( #can't take credit, tutor showed me how to do this
+     f"\nFinancial Analysis\n"
+     f"\n--------------------------------\n"
+     f"\nTotal Months: {len(values)}\n"
+     f"\nTotal: ${sum(values)}\n"
+     f"\nNet Total P/L: ${sum(diff_list)}\n"
+     f"\nAverage Change: ${average}\n"
+     f"\nGreatest Increase in Profits: {monthlabel[(diff_list.index(gincrease)+1)]} $({gincrease}\n"
+     f"\nGreatest Decrease in Profits: {monthlabel[diff_list.index(gdecrease)+1]} $({gdecrease})\n"
+)
+
+print(f"Financial Analysis")
+print("--------------------------------")
+print(f"Total Months: {len(values)}")
 print(f"Total: ${sum(values)}")
 print(f"Net Total P/L: ${sum(diff_list)}")
-print(f"Average Change: ${average}  THIS IS DIVIDING BY 85 not 86")
-print(f"Greatest Increase in Profits: {monthlabel[25]} $({gincrease})")
-print(f"Greatest Decrease in Profits: {monthlabel[44]} $({gdecrease})")
+print(f"Average Change: ${average}")
+print(f"Greatest Increase in Profits: {monthlabel[(diff_list.index(gincrease)+1)]} $({gincrease})")
+print(f"Greatest Decrease in Profits: {monthlabel[diff_list.index(gdecrease)+1]} $({gdecrease})")
+
+with open (outputfile, 'w') as txtfile:
+    txtfile.write(results)
