@@ -22,6 +22,10 @@ with open(datapath) as csvfile: #opens and reads .csv
         votes[candidate] = votes[candidate] + 1 #when found in list, tally how many times in list?
         votecount = votecount + 1  #when found in list add 1 to their vote count
 
+loopResult = ""
+for c in candidates:
+    loopResult = loopResult + f'{c}: ' + str(round(((votes[c] / votecount) * 100),2)) + '% ' '(' + str(votes[c]) + ')\n'
+
 print("Election Results")
 print("----------------------")
 print(f"Total Votes: {votecount}")
@@ -40,7 +44,7 @@ results = (       #tutor showed me, generally, how to do this
         f"\n----------------------\n"
         f"\nTotal Votes: {votecount}\n"
         f"\n----------------------\n"
-        f"\n{c}:{round(((votes[c] / votecount) * 100),2)}% ({votes[c]})\n"
+        f"\n{loopResult}\n"
         f"\n----------------------\n"
         f"\nWinner: {winner}\n"
         f"\n----------------------\n"
